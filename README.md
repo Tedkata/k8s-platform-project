@@ -1,2 +1,2 @@
 # k8s-platform-project
-Production-ready Kubernetes platform for deploying a microservices-based application using Helm, NGINX Ingress, and GitHub Actions CI/CD. Includes health checks, autoscaling, resource management, and secure configuration via ConfigMaps and Secrets.
+Kubernetes-based platform for containerized applications featuring Helm charts, NGINX Ingress, GitHub Actions CI/CD, liveness/readiness probes, resource limits, HPA, and ConfigMap/Secret-based configuration.
