@@ -1,0 +1,11 @@
+image:
+  repository: my-app
+  tag: dev
+
+replicaCount: 1
+
+redis:
+  enabled: true
+
+postgresql:
+  enabled: true
