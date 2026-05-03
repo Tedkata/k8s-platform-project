@@ -10,11 +10,5 @@ redis:
 postgresql:
   enabled: true
 
-  primary:
-    image:
-      registry: docker.io
-      repository: bitnami/postgresql
-      tag: 16.3.0-debian-12
-    
 service:
   port: 3000
