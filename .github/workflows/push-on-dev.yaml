@@ -1,4 +1,4 @@
-name: Build and Push
+name: Build and Push on Dev
 
 on:
   push:
@@ -23,4 +23,18 @@ jobs:
           context: ./app
           file: docker/Dockerfile
           push: true
-          tags: 980218/my-app:dev
+          tags: 980218/my-app:${{ github.sha }}
+
+### Cannot work remotely, as on local pc          
+      - name: Setup kubectl
+        if: false
+        uses: azure/setup-kubectl@v4
+
+      - name: Setup Helm
+        if: false
+        uses: azure/setup-helm@v5
+
+      - name: Deploy with Helm (disabled - local cluster)
+        if: false
+        run: |
+          helm upgrade --install my-app ./helm/my-app -f ./helm/my-app/values-dev.yaml --set image.tag=${{ github.sha }}  

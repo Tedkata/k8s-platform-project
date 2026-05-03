@@ -1,0 +1,37 @@
+image:
+  repository: 980218/my-app
+  tag: "stable"
+
+replicaCount: 3
+
+redis:
+  enabled: true
+
+postgresql:
+  enabled: true
+
+service:
+  port: 3000
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: my-app.prod
+      paths:
+        - path: /
+          pathType: Prefix
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 256Mi
+  limits:
+    cpu: 500m
+    memory: 512Mi
+
+autoscaling:
+  enabled: true
+  minReplicas: 2
+  maxReplicas: 6
+  targetCPUUtilizationPercentage: 70
