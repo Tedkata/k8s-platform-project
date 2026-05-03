@@ -1,5 +1,5 @@
 image:
-  repository: my-app
+  repository: 980218/my-app
   tag: dev
 
 replicaCount: 1
