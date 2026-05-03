@@ -8,6 +8,10 @@ redis:
   enabled: true
 
 postgresql:
+  image:
+    registry: docker.io
+    repository: bitnami/postgresql
+    tag: 16.0.3
   enabled: true
 
 service:
