@@ -2,7 +2,9 @@ name: Build and Push on Dev
 
 on:
   push:
-    branches: [main]
+    branches:
+      - main
+      - dev
 
 jobs:
   build:
@@ -10,6 +12,17 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - name: Set environment
+        id: env
+        run: |
+          if [[ "${GITHUB_REF##*/}" == "main" ]]; then
+            echo "ENV=prod" >> $GITHUB_ENV
+            echo "VALUES=values-prod.yaml" >> $GITHUB_ENV
+          else
+            echo "ENV=dev" >> $GITHUB_ENV
+            echo "VALUES=values-dev.yaml" >> $GITHUB_ENV
+          fi
 
       - name: Login to DockerHub
         uses: docker/login-action@v3
@@ -37,4 +50,4 @@ jobs:
       - name: Deploy with Helm (disabled - local cluster)
         if: false
         run: |
-          helm upgrade --install my-app ./helm/my-app -f ./helm/my-app/values-dev.yaml --set image.tag=${{ github.sha }}  
+          helm upgrade --install my-app ./helm/my-app -f ./helm/my-app/${VALUES} --set image.tag=${{ github.sha }}  

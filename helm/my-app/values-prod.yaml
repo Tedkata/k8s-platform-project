@@ -1,6 +1,6 @@
 image:
   repository: 980218/my-app
-  tag: "stable"
+  tag: "dev"
 
 replicaCount: 3
 
@@ -16,11 +16,7 @@ service:
 ingress:
   enabled: true
   className: nginx
-  hosts:
-    - host: my-app.prod
-      paths:
-        - path: /
-          pathType: Prefix
+  host: my-app.prod
 
 resources:
   requests:
