@@ -12,3 +12,12 @@ postgresql:
 
 service:
   port: 3000
+
+ingress:
+  enabled: true
+  className: nginx
+  hosts:
+    - host: my-app.local
+      paths:
+        - path: /
+          pathType: Prefix
