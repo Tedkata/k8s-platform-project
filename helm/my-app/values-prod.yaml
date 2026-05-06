@@ -2,7 +2,7 @@ image:
   repository: 980218/my-app
   tag: "dev"
 
-replicaCount: 3
+replicaCount: 4
 
 redis:
   enabled: true
