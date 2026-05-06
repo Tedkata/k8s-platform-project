@@ -1,7 +1,7 @@
 # Kubernetes Platform Project (DevOps Showcase)
 
 # Description
-Local Kubernetes platform simulating production architecture built with Helm and GitOps using ArgoCD, featuring microservices deployment, ingress routing, and CI pipeline for containerized applications.
+Local Kubernetes platform simulating production architecture built with Helm and GitOps using ArgoCD, featuring microservices deployment, ingress routing, autoscaling and CI pipeline for containerized applications.
 
 # Features
 - Kubernetes-based microservices deployment
@@ -12,6 +12,7 @@ Local Kubernetes platform simulating production architecture built with Helm and
 - Health checks (liveness/readiness probes)
 - Resource limits and requests
 - Secrets management via Kubernetes Secrets
+- Horizontal Pod Autoscaling (HPA) with environment-based scaling policies
 - GitOps-based deployment using ArgoCD
 
 # Key Highlights
@@ -20,6 +21,7 @@ Local Kubernetes platform simulating production architecture built with Helm and
 - Externalized configuration via values.yaml
 - Containerized microservices architecture
 - Production-like networking with Ingress controller
+- Different autoscaling strategies for dev and production environments (replica and CPU thresholds)
 - GitOps workflow with ArgoCD (automated cluster synchronization from GitHub)
 
 # How to run locally
