@@ -9,6 +9,8 @@ redis:
 
 postgresql:
   enabled: true
+  auth:
+    password: mysecretpassword
 
 service:
   port: 3000
