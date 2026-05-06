@@ -10,7 +10,9 @@ redis:
 postgresql:
   enabled: true
   auth:
+    username: myuser
     password: mysecretpassword
+    database: mydb
 
 service:
   port: 3000
