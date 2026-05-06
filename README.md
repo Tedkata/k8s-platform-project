@@ -1,7 +1,7 @@
 # Kubernetes Platform Project (DevOps Showcase)
 
 # Description
-Local Kubernetes platform simulating production architecture built with Helm, featuring microservices deployment, ingress routing, and CI pipeline for containerized applications.
+Local Kubernetes platform simulating production architecture built with Helm and GitOps using ArgoCD, featuring microservices deployment, ingress routing, and CI pipeline for containerized applications.
 
 # Features
 - Kubernetes-based microservices deployment
@@ -12,6 +12,7 @@ Local Kubernetes platform simulating production architecture built with Helm, fe
 - Health checks (liveness/readiness probes)
 - Resource limits and requests
 - Secrets management via Kubernetes Secrets
+- GitOps-based deployment using ArgoCD
 
 # Key Highlights
 - Environment-based Helm deployments (dev/prod ready)
@@ -19,6 +20,7 @@ Local Kubernetes platform simulating production architecture built with Helm, fe
 - Externalized configuration via values.yaml
 - Containerized microservices architecture
 - Production-like networking with Ingress controller
+- GitOps workflow with ArgoCD (automated cluster synchronization from GitHub)
 
 # How to run locally
 kind create cluster --config kind-config.yaml
@@ -33,9 +35,16 @@ http://my-app.local
 GitHub Actions pipeline:
 - Builds Docker image
 - Pushes to DockerHub
-- (Deployment step disabled for local Kubernetes cluster)
+- Deployment is handled by ArgoCD via GitOps (pull-based model)
 
 In production environments, deployment would be handled via Helm or GitOps (ArgoCD).
+
+# GitOps (ArgoCD)
+This project uses Argo CD for GitOps-based deployment.
+ArgoCD continuously syncs the Kubernetes cluster with the Helm configuration stored in GitHub.
+Any change pushed to the repository is automatically applied to the cluster (automated sync enabled).
+This removes the need for manual deployments using kubectl or helm after initial setup.
+It demonstrates a production-style pull-based deployment model (Git → Cluster).
 
 # Tech Stack
 - Kubernetes (kind)
@@ -46,6 +55,7 @@ In production environments, deployment would be handled via Helm or GitOps (Argo
 - Node.js
 - PostgreSQL (Bitnami Helm chart)
 - Redis (Bitnami Helm chart)
+- ArgoCD
 
 # What I Learned
 - Kubernetes deployment lifecycle
@@ -54,6 +64,7 @@ In production environments, deployment would be handled via Helm or GitOps (Argo
 - CI pipelines for containerized applications
 - Managing stateful services in Kubernetes
 - Debugging ImagePullBackOff and deployment issues
+- ArgoCD for continuos deployment
 
 # Architecture Diagram
                         ┌───────────────┐
@@ -67,6 +78,11 @@ In production environments, deployment would be handled via Helm or GitOps (Argo
                                │
                         ┌──────▼────────┐
                         │  DockerHub    │
+                        └──────┬────────┘
+                               │
+                        ┌──────▼────────┐
+                        │   ArgoCD      │
+                        │   (GitOps)    │
                         └──────┬────────┘
                                │
                   ┌────────────▼────────────┐
